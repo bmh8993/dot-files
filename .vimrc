@@ -1,5 +1,5 @@
 set nocompatible              " Vi와 호환 불가 설정, 필수
-filetype off                  " 필수                                                                                                                                                                                                 
+filetype off                  " 필수
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -71,6 +71,9 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 let g:airline#extensions#tabline#enabled = 1
 "tab라인에 파일 이름만 보이게 하는 옵션. 경로 표시가 안된다.
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_theme='gruvbox'
+set laststatus=2 " turn on bottom bar
+set ttimeoutlen=50
 
 "neocomplcache
 let g:neocomplcache_enable_at_startup = 1
@@ -87,8 +90,5 @@ set laststatus=2
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 
-" for vim-airline
-let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
-let g:airline_theme='gruvbox'
-set laststatus=2 " turn on bottom bar
-set ttimeoutlen=50
+"ctags
+set tags=tags
