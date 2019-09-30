@@ -4,6 +4,7 @@ filetype off                  " 필수
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'https://github.com/nvie/vim-flake8'
 Plugin 'morhetz/gruvbox'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
@@ -92,3 +93,6 @@ set t_Co=256
 
 "ctags
 set tags=tags
+
+"flake8
+autocmd FileType python map <buffer> <F5> :call Flake8()<CR>
