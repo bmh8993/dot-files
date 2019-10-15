@@ -36,6 +36,8 @@ set nu
 
 " Searching options
 set hlsearch " 검색된 결과 강조 표시. (= hls) <-> nohlsearch (= nohls)
+" Press Space to turn off highlighting and clear any message already displayed. space+enter
+:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 set incsearch " 검색어를 입력할 때마다 일치하는 문자열을 강조해서 표시. (= is) <-> noincsearch (= nois)
 set ignorecase " 검색시 대소문자를 구분하지 않음. (= ic) <-> noignorecase (= noic)
 set smartcase " 검색어에 대문자가 있다면 정확히 일치하는 문자열을 찾음. ignorecase 옵션이 on이어도 됨. (= scs) <-> nosmartcase (= noscs)
