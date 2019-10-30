@@ -9,10 +9,8 @@ Plugin 'morhetz/gruvbox'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-fugitive'
 Bundle 'matchparenpp'
 Bundle 'neocomplcache'
-Plugin 'blueyed/vim-diminactive'
 Plugin 'bad-whitespace'
 Bundle 'https://github.com/vim-scripts/Align'
 Bundle 'https://github.com/nathanaelkane/vim-indent-guides'
@@ -98,3 +96,5 @@ set tags=tags
 
 "flake8
 autocmd FileType python map <buffer> <F5> :call Flake8()<CR>
+"yank, paste to system clipboard
+set clipboard=unnamed
