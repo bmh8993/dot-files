@@ -14,6 +14,7 @@ Bundle 'neocomplcache'
 Plugin 'bad-whitespace'
 Bundle 'https://github.com/vim-scripts/Align'
 Bundle 'https://github.com/nathanaelkane/vim-indent-guides'
+Plugin 'blueyed/vim-diminactive'
 call vundle#end()
 
 filetype plugin indent on
@@ -96,5 +97,3 @@ set tags=tags
 
 "flake8
 autocmd FileType python map <buffer> <F5> :call Flake8()<CR>
-"yank, paste to system clipboard
-set clipboard=unnamed
