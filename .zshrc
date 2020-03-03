@@ -69,13 +69,13 @@ export ZSH="/Users/baemh/.oh-my-zsh"
 # Add wisely, as too many plugins slow down shell startup.
 
 source $ZSH/oh-my-zsh.sh
-
+export PATH="/usr/local/mysql/bin:$PATH"
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+ export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -96,33 +96,41 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# locale settings
+export LC_ALL=en_US.UTF-8  
+
+# plugins
+plugins=(zsh-autosuggestions history-substring-search)
+
+# theme
+autoload -U promptinit; promptinit
+prompt pure
+
+alias vim="vim"
+alias vi="vim"
+
+alias ctags="`brew --prefix`/bin/ctags"
+export PATH="/Users/$(whoami)/Library/Python/3.7/bin:$PATH"
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/baemh/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/baemh/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/baemh/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/baemh/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/Users/baemh/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/baemh/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/baemh/miniconda3/bin:$PATH"
+        export PATH="/Users/baemh/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+export MYSQL_ROOT_HOST='127.0.0.1'
+export MYSQL_DATABASE='bird_view'
+export MYSQL_USER='root'
+export MYSQL_ROOT_PASSWORD='baemh2019'
 
-plugins=(
-  git
-  zsh-syntax-highlighting
-  zsh-autosuggestions
-)
-autoload -U promptinit; promptinit
-prompt pure
-
-alias vim="nvim"
-alias vi="nvim"
-alias vimdiff="nvim -d"
-export EDITOR=/usr/local/bin/nvim
-
-alias ctags="`brew --prefix`/bin/ctags"
-export PATH="/Users/$(whoami)/Library/Python/3.7/bin:$PATH"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source /Users/baemh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
