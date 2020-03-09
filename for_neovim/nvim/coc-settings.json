@@ -1,0 +1,34 @@
+{
+  "tsserver.enable": true,
+  "eslint.enable": false,
+   "coc.preferences.formatOnSaveFiletypes": [
+     "javascript",
+     "typescript",
+     "typescriptreact",
+     "json",
+     "javascriptreact",
+     "typescript.tsx"
+   ],
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "i",
+  "diagnostic.hintSign": "➤",
+  "diagnostic.virtualText": true,
+  "python.jediEnabled": false,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "/Users/baemh/anaconda3/bin/black",
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Args": [
+          "--ignore=E501, E203, W503",
+          "max-line-length = 88",
+          "select = C,E,F,W,B,B950"
+  ],
+  "html.enable": true,
+  "html.format.enable": true,
+  "html.filetypes": [
+    "html",
+    "handlebars",
+    "htmldjango"
+  ],
+  "css.enable": true
+}
