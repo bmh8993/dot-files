@@ -2,6 +2,9 @@
   "tsserver.enable": true,
   "eslint.enable": false,
    "coc.preferences.formatOnSaveFiletypes": [
+     "css",
+     "html",
+     "Markdown",
      "javascript",
      "typescript",
      "typescriptreact",
@@ -19,7 +22,7 @@
   "python.formatting.blackPath": "/Users/baemh/anaconda3/bin/black",
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
-          "--ignore=E501, E203, W503",
+          "--ignore=E501, E203, W503, E123, E126, E128",
           "max-line-length = 88",
           "select = C,E,F,W,B,B950"
   ],

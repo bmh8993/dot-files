@@ -8,7 +8,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 " ----- python --------------------------------------------
 " Syntax Highlighting
-Plug 'vim-python/python-syntax'
+" Plug 'vim-python/python-syntax'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'nvie/vim-flake8'
 " ---------------------------------------------------------
 " theme
@@ -22,7 +23,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " syntax
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = ["coc-eslint", 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-python', 'coc-tsserver']
+let g:coc_global_extensions = ["coc-eslint", 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 " base
 Plug 'vim-scripts/taglist.vim'
 Plug 'vim-airline/vim-airline'
