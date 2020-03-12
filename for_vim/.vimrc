@@ -6,10 +6,18 @@ filetype off 			" required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'dense-analysis/ale'
+" python
+Plugin 'vim-python/python-syntax'
+" base
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
 Plugin 'bad-whitespace'
 Plugin 'scrooloose/nerdtree'
 Plugin 'https://github.com/nvie/vim-flake8'
-Plugin 'blueyed/vim-diminactive'
 Plugin 'Raimondi/delimitMate'
 Plugin 'gmarik/Vundle.vim'
 call vundle#end()            " 필수
@@ -35,6 +43,7 @@ set cursorline " 커서가 있는 라인을 강조 표시. (= cul)
 set ruler              " 상태표시줄에 커서의 위치 표시
 set clipboard=unnamed " 복사시 추가로 클립보드에 저장
 set showcmd
+set encoding=utf-8
 hi cursorline cterm=none term=none
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
@@ -45,10 +54,25 @@ highlight CursorLine guibg=#ffffff ctermbg=234
 " ===========================================================
 set hlsearch " 검색된 결과 강조 표시. (= hls) <-> nohlsearch (= nohls)
 " Press Space to turn off highlighting and clear any message already displayed. space+enter
-:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 set incsearch " 검색어를 입력할 때마다 일치하는 문자열을 강조해서 표시. (= is) <-> noincsearch (= nois)
 set ignorecase " 검색시 대소문자를 구분하지 않음. (= ic) <-> noignorecase (= noic)
 set smartcase " 검색어에 대문자가 있다면 정확히 일치하는 문자열을 찾음. ignorecase 옵션이 on이어도 됨. (= scs) <-> nosmartcase (= noscs)
+
+" ===========================================================
+" cursor movement on insert mode(alt + hjkl)
+" ===========================================================
+imap ˙ <Left>
+imap ∆ <Down>
+imap ˚ <Up>
+imap ¬ <Right>
+
+" ===========================================================
+" insert/nomar mode change cursor shape
+" ===========================================================
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " ===========================================================
 " Indentation options
@@ -92,16 +116,47 @@ au FileType python set foldmethod=indent foldlevel=99
 " *********************************************************************************************************
 " plugin settings
 " *********************************************************************************************************
+" ==========================================================
+" vim-javascript
+" ===========================================================
+let g:javascript_plugin_flow = 1
+
+" ===========================================================
+" vim-jsx
+" ===========================================================
+let g:jsx_ext_required = 1
+let g:jsx_pragma_required = 1
+
+" ===========================================================
+" ale
+" ===========================================================
+" let g:jsx_ext_required = 0
+"
+" let g:ale_linters = {
+" \   'javascript': ['standard'],
+" \}
+"
+" let g:ale_fixers = {
+" \   'javascript': ['prettier', 'eslint'],
+" \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+" \}
+
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+"let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_text_changed = 'never'
+"highlight ALEErrorSign ctermbg=NONE ctermfg=red
+"highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+"let g:ale_linters_explicit = 1
+"let g:ale_lint_on_save = 1
+"let g:ale_fix_on_save = 1
+"let g:ale_javascript_prettier_options = '--no-semi --single-quote --trailing-comma none'
+let g:airline#extensions#ale#enabled = 1 " Set this. Airline will handle the rest.
 
 " ===========================================================
 " delimiMate
 " ===========================================================
 let delimiMate_expand_cr=1
-
-" ===========================================================
-" diminactive
-" ===========================================================
-hi ColorColumn ctermbg=0 guibg=#eee8d5
 
 " ===========================================================
 " flake8
@@ -136,7 +191,7 @@ set tags=tags
 " TagList
 " ===========================================================
 " vim을 열면 자동으로 오픈
-let Tlist_Auto_Open=1
+" let Tlist_Auto_Open=1
 " 분할 창을 오른쪽에 배치
 let Tlist_Use_Right_Window=1
 " 토글
@@ -149,4 +204,18 @@ let Tlist_WinWidth = 40
 " ===========================================================
 map <F2> :SrcExplToggle<CR><CR>
 let SrcExpl_winHeight = 15
+let g:SrcExpl_searchLocalDef = 1
+let g:SrcExpl_pluginList = [
+   \ "__Tag_List__",
+   \ "_NERD_tree_",
+   \ "Source_Explorer"
+   \ ]
+nmap <C-H> <C-W>h
+nmap <C-J> <C-W>j
+nmap <C-K> <C-W>k
+nmap <C-L> <C-W>l
 
+" ==========================================================
+" prettier
+" ==========================================================
+nmap <F6> :Prettier<cr>
