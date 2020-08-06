@@ -11,6 +11,8 @@ Plug 'mxw/vim-jsx'
 " Plug 'vim-python/python-syntax'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'nvie/vim-flake8'
+" ----- golang --------------------------------------------
+Plug 'fatih/vim-go'
 " ---------------------------------------------------------
 " theme
 Plug 'dracula/vim'
@@ -23,11 +25,12 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " syntax
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = ["coc-eslint", 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
+let g:coc_global_extensions = ["coc-eslint", 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', "coc-go", "coc-python"]
 " base
 Plug 'vim-scripts/taglist.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
+Plug 'thaerkh/vim-indentguides'
 call plug#end()
 
 " ***************************************************************************************
@@ -47,6 +50,12 @@ hi cursorline cterm=none term=none
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 highlight CursorLine guibg=#ffffff ctermbg=234
+let g:vim_json_conceal = 0
+set conceallevel=0
+" ===========================================================
+" vim-indent-guides options
+" ===========================================================
+let g:indent_guides_enable_on_vim_startup = 1
 " ===========================================================
 " Input options
 " ===========================================================
@@ -61,14 +70,6 @@ set incsearch " 검색어를 입력할 때마다 일치하는 문자열을 강�
 set ignorecase " 검색시 대소문자를 구분하지 않음. (= ic) <-> noignorecase (= noic)
 set smartcase " 검색어에 대문자가 있다면 정확히 일치하는 문자열을 찾음. ignorecase 옵션이 on이어도 됨. (= scs) <-> nosmartcase (= noscs)
 
-" ===========================================================
-" cursor movement on insert mode(alt + hjkl)
-" ===========================================================
-imap ˙ <Left>
-imap ∆ <Down>
-imap ˚ <Up>
-imap ¬ <Right>
-
 " =========================================================
 " theme dracula
 " =========================================================
@@ -78,13 +79,23 @@ endif
 syntax enable
 colorscheme dracula
 " ===========================================================
-"split navigations
+"split navigations 분할된 화면 사이에서 커서 이동하기
 " ===========================================================
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
+" ===========================================================
+" In insert or command mode, move normally by using Ctrl
+" ===========================================================
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+cnoremap <C-h> <Left>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-l> <Right>
 " ==========================================================
 " Shortcuts
 " ==========================================================
@@ -116,9 +127,46 @@ au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-    \ set textwidth=79 |
+    \ set textwidth=88 |
     \ set expandtab |
     \ set autoindent |
+" ===========================================================
+" for go
+" ===========================================================
+" use golang language server
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+" Highlight more info
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+" highlight same variable in view
+let g:go_auto_sameids = 1
+" show type info in statusbar
+let g:go_auto_type_info = 1
+" disable gd mapping of vim-go
+let g:go_def_mapping_enabled = 0
+" auto import
+let g:go_fmt_command = "goimports"
+" ===========================================================
+" code fold
+" ===========================================================
+"set foldmethod=indent
+" Keep all folds open when a file is opened
+augroup OpenAllFoldsOnFileOpen
+    autocmd!
+    autocmd BufRead * normal zR
+augroup END
+" za: Toggle code folding at the current line. The block that the current line belongs to is folded (closed) or unfolded (opened).
+" zo: Open fold.
+" zc: Close fold.
+" zR: Open all folds.
+" zM: Close all folds.
 " ***************************************************************************************
 " plug settings
 " ***************************************************************************************

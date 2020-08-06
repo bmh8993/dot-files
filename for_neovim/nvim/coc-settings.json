@@ -1,37 +1,108 @@
 {
   "tsserver.enable": true,
-  "eslint.enable": false,
-   "coc.preferences.formatOnSaveFiletypes": [
-     "css",
-     "html",
-     "Markdown",
-     "javascript",
-     "typescript",
-     "typescriptreact",
-     "json",
-     "javascriptreact",
-     "typescript.tsx"
-   ],
+  "eslint.enable": true,
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact",
+    "typescript.tsx"
+  ],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "html",
+    "Markdown",
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx"
+  ],
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "i",
   "diagnostic.hintSign": "➤",
-  "diagnostic.virtualText": true,
-  "python.jediEnabled": false,
+  "diagnostic.virtualText": false,
+  "python.pythonPath": "/Users/baemh/anaconda3/envs/holaplan/bin/python3.7",
+  "python.jediEnabled": true,
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "/Users/baemh/anaconda3/bin/black",
+  "python.condaPath": "conda",
   "python.linting.flake8Enabled": true,
   "python.linting.flake8Args": [
-          "--ignore=E501, E203, W503, E123, E126, E128",
-          "max-line-length = 88",
-          "select = C,E,F,W,B,B950"
+    "--ignore=E501, E203, W503, E123, E126, E128, E402",
+    "max-line-length = 88",
+    "select = C,E,F,W,B,B950"
   ],
   "html.enable": true,
   "html.format.enable": true,
-  "html.filetypes": [
-    "html",
-    "handlebars",
-    "htmldjango"
-  ],
-  "css.enable": true
+  "html.filetypes": ["html", "handlebars", "htmldjango"],
+  "css.enable": true,
+  "go.disable": { "workspaceFolders": false },
+  "languageserver": {
+    "python": {
+      "command": "python",
+      "args": ["-mpyls", "-vv", "--log-file", "/tmp/lsp_python.log"],
+      "trace.server": "verbose",
+      "filetypes": ["python"],
+      "settings": {
+        "pyls": {
+          "enable": true,
+          "trace": {
+            "server": "verbose"
+          },
+          "commandPath": "",
+          "configurationSources": ["pycodestyle"],
+          "plugins": {
+            "jedi_completion": {
+              "enabled": false
+            },
+            "jedi_hover": {
+              "enabled": false
+            },
+            "jedi_references": {
+              "enabled": false
+            },
+            "jedi_signature_help": {
+              "enabled": false
+            },
+            "jedi_symbols": {
+              "enabled": false,
+              "all_scopes": true
+            },
+            "mccabe": {
+              "enabled": false,
+              "threshold": 15
+            },
+            "preload": {
+              "enabled": false
+            },
+            "pycodestyle": {
+              "enabled": false
+            },
+            "pydocstyle": {
+              "enabled": false,
+              "match": "(?!test_).*\\.py",
+              "matchDir": "[^\\.].*"
+            },
+            "pyflakes": {
+              "enabled": false
+            },
+            "rope_completion": {
+              "enabled": false
+            },
+            "yapf": {
+              "enabled": false
+            }
+          }
+        }
+      }
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    }
+  }
 }
