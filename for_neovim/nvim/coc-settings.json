@@ -24,7 +24,7 @@
   "diagnostic.infoSign": "i",
   "diagnostic.hintSign": "➤",
   "diagnostic.virtualText": false,
-  "python.pythonPath": "/Users/baemh/anaconda3/envs/holaplan/bin/python3.7",
+  "python.pythonPath": "/Users/baemh/anaconda3/envs/loan_manager/bin/python3.7",
   "python.jediEnabled": true,
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "/Users/baemh/anaconda3/bin/black",
@@ -102,7 +102,13 @@
     "golang": {
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
+      "filetypes": ["go"],
+      "disableWorkspaceFolders": true
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
     }
   }
 }

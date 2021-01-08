@@ -75,7 +75,8 @@ export PATH="/usr/local/mysql/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
- export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -96,18 +97,22 @@ export PATH="/usr/local/mysql/bin:$PATH"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# locale settings
-export LC_ALL=en_US.UTF-8  
 
 # plugins
-plugins=(zsh-autosuggestions history-substring-search)
+plugins=(
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
 
 # theme
 autoload -U promptinit; promptinit
 prompt pure
 
-alias vim="vim"
-alias vi="vim"
+alias vim="nvim"
+alias vi="nvim"
+alias vimdiff="nvim -d"
+export EDITOR=/usr/local/bin/nvim
 
 alias ctags="`brew --prefix`/bin/ctags"
 export PATH="/Users/$(whoami)/Library/Python/3.7/bin:$PATH"
@@ -125,12 +130,30 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-export MYSQL_ROOT_HOST='127.0.0.1'
-export MYSQL_DATABASE='bird_view'
-export MYSQL_USER='root'
-export MYSQL_ROOT_PASSWORD='baemh2019'
 
+#=====================================================================#
+# neovim
+#=====================================================================#
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#=====================================================================#
+# zsh
+#=====================================================================#
 source /Users/baemh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export TERM=xterm-256color
+
+#=====================================================================#
+# fzf
+#=====================================================================#
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#=====================================================================#
+# gvm(Golang Version Manager)
+#=====================================================================#
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
+#=====================================================================#
+# rabbitmq
+#=====================================================================#
+PATH=$PATH:/usr/local/sbin

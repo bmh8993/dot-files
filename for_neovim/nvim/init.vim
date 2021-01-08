@@ -1,5 +1,5 @@
 call plug#begin("~/.vim/plugged")
-  " Plugin Section
+" Plugin Section
 " ----- javascript & typescript ---------------------------
 " IntelliSense and Syntax Highlighting
 Plug 'leafgarland/typescript-vim'
@@ -12,7 +12,9 @@ Plug 'mxw/vim-jsx'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'nvie/vim-flake8'
 " ----- golang --------------------------------------------
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" ----- dockerfile ----------------------------------------
+Plug 'ekalinin/Dockerfile.vim'
 " ---------------------------------------------------------
 " theme
 Plug 'dracula/vim'
@@ -50,7 +52,7 @@ hi cursorline cterm=none term=none
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 highlight CursorLine guibg=#ffffff ctermbg=234
-let g:vim_json_conceal = 0
+let g:vim_json_conceal=0
 set conceallevel=0
 " ===========================================================
 " vim-indent-guides options
@@ -133,6 +135,13 @@ au BufNewFile,BufRead *.py
 " ===========================================================
 " for go
 " ===========================================================
+au BufNewFile,BufRead *.go
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=88 |
+    \ set expandtab |
+    \ set autoindent |
 " use golang language server
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
@@ -146,7 +155,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 " highlight same variable in view
-let g:go_auto_sameids = 1
+let g:go_auto_sameids = 0
 " show type info in statusbar
 let g:go_auto_type_info = 1
 " disable gd mapping of vim-go
@@ -220,6 +229,11 @@ set tags=tags
 " flake8
 " ===========================================================
 autocmd FileType python map <buffer> <F5> :call Flake8()<CR>
+" ===========================================================
+" vim-go
+" ===========================================================
+autocmd FileType go map <buffer> <F5> :GoErrCheck<CR>
+let g:go_fmt_command = "goimports"
 " ===========================================================
 " TagList
 " ===========================================================
